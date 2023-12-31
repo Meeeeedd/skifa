@@ -37,6 +37,14 @@ userSchema.methods.comparePassword = async function (password) {
     }
 };
 
+userSchema.methods.toJson = async function () {
+    return ({
+        username:this.username,
+        email:this.email,
+        role:this.role
+    })
+}
+
 const UserModel = mongoose.model('User', userSchema);
 
 module.exports = UserModel;
