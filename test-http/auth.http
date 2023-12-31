@@ -1,0 +1,22 @@
+@hostname = http://localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+
+POST {{host}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "email": "ferid@example.com",
+    "username": "ferid",
+    "password": "toto"
+}
+
+###
+
+POST {{host}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "ferid@example.com",
+    "password": "toto"
+}

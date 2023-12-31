@@ -1,4 +1,5 @@
 const User=require('../models/user.model')
+const bcrypt=require('bcrypt')
 
 const registerUser =async (_user) => {
    const { username,email, password} = _user;
@@ -18,7 +19,9 @@ const loginUser =async (_user) => {
    if(!user){
      throw new Error('Wrong Credentials !')
    }else{
-     if(user.password===password){
+    const result=await bcrypt.compare(user.password,password)
+     if(result){
+      //TODO: to return JWT
        return user;
      }else{
        throw new Error('Wrong Credentials !')
