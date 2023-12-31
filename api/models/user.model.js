@@ -41,6 +41,7 @@ userSchema.methods.toJson = async function () {
     return ({
         username:this.username,
         email:this.email,
+        avatar:this.avatar,
         role:this.role
     })
 }
