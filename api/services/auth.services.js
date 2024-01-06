@@ -1,5 +1,4 @@
 const User = require('../models/user.model')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (_user) => {
@@ -18,9 +17,9 @@ const loginUser = async (_user) => {
   const { email, password } = _user;
   const user = await User.findOne({ email });
 
-  const passwordCompare = bcrypt.compareSync(password, user.password);
 
-  if (user && passwordCompare) {
+
+  if (user && user.passwordCompare(password)) {
     const token = jwt.sign(
       { user_id: user._id, email: user.email, role: user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "1d" }
     )
