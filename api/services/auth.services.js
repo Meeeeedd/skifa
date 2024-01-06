@@ -19,7 +19,7 @@ const loginUser = async (_user) => {
 
 
 
-  if (user && user.passwordCompare(password)) {
+  if (user && user.comparePassword(password)) {
     const token = jwt.sign(
       { user_id: user._id, email: user.email, role: user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "1d" }
     )
