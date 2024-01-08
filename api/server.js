@@ -1,14 +1,10 @@
 require('dotenv').config();
+require('./config/mongo');
 const http = require('http');
 const app = require('./app');
 
 
 
-const mongoose = require('mongoose')
-
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/skifa_db')
-    .then(() => console.log('DB connected'))
-    .catch(err => console.log(err))
 
 const server = http.createServer(app);
 

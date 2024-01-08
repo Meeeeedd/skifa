@@ -1,5 +1,7 @@
-const User = require('../models/user.model')
-const jwt = require('jsonwebtoken');
+const encode=require('../utils/jws').encode;
+const User = require('../models/user.model');
+
+
 
 const registerUser = async (_user) => {
   const { username, email, password } = _user;
@@ -20,9 +22,7 @@ const loginUser = async (_user) => {
  
 
   if (user && user.comparePassword(password)) {
-    const token = jwt.sign(
-      { user_id: user._id, email: user.email, role: user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "1d" }
-    )
+    const token = encode(user._id,user.email,user.role);
     return ({ user:await user.toJson(), token: token })
   } else
     throw Error("Invalid Credentials")
