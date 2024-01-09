@@ -7,15 +7,15 @@ const userSchema = new mongoose.Schema(
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    avatar: { type: String }, // Store the URL or file path of the user's avatar
+    avatar: { type: String }, 
     displayName: { type: String },
     dateOfBirth: { type: Date },
     interests: { type: [String] },
   },
   { timestamps: true }
-); // Add timestamps for createdAt and updatedAt
+);
 
-// Hash the password before saving
+
 userSchema.pre("save", async function (next) {
   try {
     if (!this.isModified("password")) {
@@ -29,7 +29,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// Compare password for login
+
 userSchema.methods.comparePassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
