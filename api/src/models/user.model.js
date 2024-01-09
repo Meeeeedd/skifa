@@ -3,18 +3,48 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    username: { type: String, unique: true, required: true },
-    email: { type: String, unique: true, required: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ["user", "admin"], default: "user" },
-    avatar: { type: String }, 
-    displayName: { type: String },
-    dateOfBirth: { type: Date },
-    interests: { type: [String] },
+    username: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
+    avatar: { type: String },
+    displayName: {
+      type: String,
+    },
+    dateOfBirth: {
+      type: Date,
+    },
+    interests: {
+      type: [String],
+    },
+    freinds: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
-
 
 userSchema.pre("save", async function (next) {
   try {
@@ -28,7 +58,6 @@ userSchema.pre("save", async function (next) {
     next(error);
   }
 });
-
 
 userSchema.methods.comparePassword = async function (password) {
   try {
@@ -50,4 +79,3 @@ userSchema.methods.toJson = async function () {
 const UserModel = mongoose.model("User", userSchema);
 
 module.exports = UserModel;
-

@@ -21,7 +21,7 @@ const loginUser = async (_user) => {
 
  
 
-  if (user && user.comparePassword(password)) {
+  if (user && await user.comparePassword(password)) {
     const token = encode(user._id,user.email,user.role);
     return ({ user:await user.toJson(), token: token })
   } else

@@ -16,7 +16,6 @@ describe('Jws Test Suit',()=>{
     })
     test('decode will return user form a given token',()=>{
         const result = decode(encode(user.id,user.email,user.role));
-        console.log(result)
         expect(result).not.toBe("undefined")
         expect(result.user_id).toEqual(user.id.toString())
         expect(result.email).toEqual(user.email)
