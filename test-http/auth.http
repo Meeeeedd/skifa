@@ -6,9 +6,9 @@ POST {{host}}/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "email": "ferid@gmail.com",
-    "username": "helaliferid",
-    "password": "toto"
+    "email": "karim@gmail.com",
+    "username": "omranekarim",
+    "password": "Toto2024*-1"
 }
 
 ###
@@ -17,6 +17,6 @@ POST {{host}}/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "ferid@example.com",
-    "password": "toto"
+    "email": "karim@gmail.com",
+    "password": "Toto2024*-1"
 }

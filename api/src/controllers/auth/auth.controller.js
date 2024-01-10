@@ -1,4 +1,4 @@
-const authService=require('../services/auth.services')
+const authService=require('../../services/auth.services')
 const {validateRegisterDTO,validateLoginDTO} =require('./auth.validators');
 
 const register =async (req,res,next)=>{
