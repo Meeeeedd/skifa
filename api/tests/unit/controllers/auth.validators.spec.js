@@ -1,4 +1,4 @@
-const { validateRegisterDTO } = require("../../../src/controllers/auth.validators")
+const { validateRegisterDTO } = require("../../../src/controllers/auth/auth.validators")
 
 describe('Auth Valiators Test Suit',()=>{
     test('Should Succes to validate a valid registerDTO',()=>{

@@ -4,7 +4,11 @@ const app = require("../../../src/app");
 
 describe("Auth Test Suit", () => {
   describe("User register Test Suit", () => {
-    beforeall
+    
+    beforeall(()=>{
+
+    })
+    
     test("should return 201 with success message when user successfully registred", async () => {
       const response = await request(app)
         .post("/api/v1/auth/register")
