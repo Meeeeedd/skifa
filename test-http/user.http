@@ -3,5 +3,5 @@
 @host = {{hostname}}:{{port}}
 
 GET {{host}}/api/v1/user/get-others
-x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU5N2MxZGIyYjU2OWE4ODVlN2JiOGVlIiwiZW1haWwiOiJmZXJpZEBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA0NzE0ODA4LCJleHAiOjE3MDczMDY4MDh9.YMi9EEoUvD1WMkvzDXYWYLEmyhdswVK_RWS4HSFWHAc 
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU5ZWVjZTE4OWI1ZTA3ZDI1NWU1ZTk3IiwiZW1haWwiOiJrYXJpbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcwNDkxNDE5NSwiZXhwIjoxNzA3NTA2MTk1fQ.HOz4G7YHHOAZIFdIHFhPXKP7D250uLz-8fg8Vv6Teog
 
