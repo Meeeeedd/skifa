@@ -9,7 +9,7 @@ const register =async (req,res,next)=>{
          return res.status(406).json(error)
       }
       const result=await authService.registerUser(user)
-      return res.json(result)
+      return res.status(201).json(result)
    } catch (error) {
     next(error)
    }
