@@ -14,11 +14,7 @@ function Person(props){
 function App() {
   return (
     <>
-<<<<<<< HEAD
       <Button colorScheme='blue'>Button</Button>
-=======
-      <Person name="John" age="30"/>
->>>>>>> f8121d9 (add)
     </>
   )
 }
