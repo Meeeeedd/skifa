@@ -1,0 +1,241 @@
+openapi: 3.0.0
+info:
+  title: Social App API
+  version: 1.0.0
+paths:
+  /api/users:
+    post:
+      summary: Create a new user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: User created successfully
+  /api/users/{userId}:
+    get:
+      summary: Get user profile
+      operationId: getUserProfile
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: User profile retrieved successfully
+    put:
+      summary: Update user profile
+      operationId: updateUserProfile
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: User profile updated successfully
+  /api/users/{userId}/friends:
+    get:
+      summary: Get user's friends
+      operationId: getUserFriends
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Friends retrieved successfully
+    post:
+      summary: Send friend invitation
+      operationId: sendFriendInvitation
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendInvitationInput'
+      responses:
+        '200':
+          description: Friend invitation sent successfully
+  /api/users/{userId}/friends/{friendId}:
+    delete:
+      summary: Respond to friend invitation
+      operationId: respondToFriendInvitation
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+        - $ref: '#/components/parameters/FriendIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendResponseInput'
+      responses:
+        '200':
+          description: Friend relationship updated successfully
+  /api/auth/register:
+    post:
+      summary: User registration
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: User registered successfully
+  /api/auth/login:
+    post:
+      summary: User login
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginInput'
+      responses:
+        '200':
+          description: Login successful
+  /api/auth/refresh:
+    post:
+      summary: Token refresh
+      operationId: refreshAuthToken
+      responses:
+        '200':
+          description: Token refreshed successfully
+  /api/auth/logout:
+    post:
+      summary: Logout
+      operationId: logoutUser
+      responses:
+        '200':
+          description: Logout successful
+  /api/messages:
+    post:
+      summary: Send message
+      operationId: sendMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageInput'
+      responses:
+        '200':
+          description: Message sent successfully
+  /api/messages/{conversationId}:
+    get:
+      summary: Get messages in a conversation
+      operationId: getMessages
+      parameters:
+        - $ref: '#/components/parameters/ConversationIdParam'
+      responses:
+        '200':
+          description: Messages retrieved successfully
+  /api/invitations:
+    post:
+      summary: Send friend invitation
+      operationId: sendFriendInvitation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendInvitationInput'
+      responses:
+        '200':
+          description: Friend invitation sent successfully
+  /api/invitations/{invitationId}/accept:
+    put:
+      summary: Accept friend invitation
+      operationId: acceptFriendInvitation
+      parameters:
+        - $ref: '#/components/parameters/InvitationIdParam'
+      responses:
+        '200':
+          description: Friend invitation accepted successfully
+  /api/invitations/{invitationId}/reject:
+    put:
+      summary: Reject friend invitation
+      operationId: rejectFriendInvitation
+      parameters:
+        - $ref: '#/components/parameters/InvitationIdParam'
+      responses:
+        '200':
+          description: Friend invitation rejected successfully
+components:
+  schemas:
+    UserInput:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        profilePicture:
+          type: string
+      required:
+        - username
+        - email
+        - password
+    FriendInvitationInput:
+      type: object
+      properties:
+        friendId:
+          type: string
+      required:
+        - friendId
+    FriendResponseInput:
+      type: object
+      properties:
+        accepted:
+          type: boolean
+      required:
+        - accepted
+    LoginInput:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    MessageInput:
+      type: object
+      properties:
+        content:
+          type: string
+        recipientId:
+          type: string
+      required:
+        - content
+        - recipientId
+  parameters:
+    UserIdParam:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+    FriendIdParam:
+      name: friendId
+      in: path
+      required: true
+      schema:
+        type: string
+    InvitationIdParam:
+      name: invitationId
+      in: path
+      required: true
+      schema:
+        type: string
+    ConversationIdParam:
+      name: conversationId
+      in: path
+      required: true
+      schema:
+        type: string
